@@ -395,7 +395,7 @@ const Galeria = () => {
           <img
             src={tab === "consultoria" ? consultingImg : meetingImg}
             alt={tab === "consultoria" ? "Consultoria" : "Reunião de negócios"}
-            className="w-full rounded-2xl object-cover shadow-xl"
+            className="mx-auto max-h-[450px] w-auto rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
         </motion.div>

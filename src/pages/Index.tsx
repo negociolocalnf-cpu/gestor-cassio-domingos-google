@@ -192,7 +192,7 @@ const Sobre = () => {
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
-          <div className="absolute -bottom-5 -right-5 -z-10 h-full w-full rounded-2xl bg-primary/5" />
+          
         </motion.div>
 
         <motion.div
@@ -334,7 +334,7 @@ const Resultados = () => {
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
-          <div className="absolute -top-5 -left-5 -z-10 h-full w-full rounded-2xl bg-secondary/5" />
+          
         </motion.div>
       </div>
     </section>

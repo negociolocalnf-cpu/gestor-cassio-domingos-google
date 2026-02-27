@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import heroImg from "@/assets/hero-photo.jpg";
-import meetingImg from "@/assets/meeting.png";
+import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting.png";
 
 /* ───────── NAVBAR ───────── */
@@ -187,8 +187,8 @@ const Sobre = () => {
           className="relative"
         >
           <img
-            src={meetingImg}
-            alt="Reunião com clientes"
+            src={aboutPhoto}
+            alt="Cássio Domingos"
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />

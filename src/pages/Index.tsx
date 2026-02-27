@@ -18,7 +18,7 @@ import {
 import { useState, useEffect } from "react";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
-import consultingImg from "@/assets/consulting.png";
+import consultingImg from "@/assets/consulting-new.jpg";
 
 /* ───────── NAVBAR ───────── */
 const Navbar = () => {

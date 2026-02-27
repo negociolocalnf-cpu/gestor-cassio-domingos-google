@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
+import meetingImg from "@/assets/meeting.jpg";
 
 /* ───────── NAVBAR ───────── */
 const Navbar = () => {
@@ -341,6 +342,68 @@ const Resultados = () => {
   );
 };
 
+/* ───────── GALERIA ───────── */
+const Galeria = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [tab, setTab] = useState<"consultoria" | "reuniao">("consultoria");
+
+  return (
+    <section className="bg-muted/50 py-24 px-5 lg:px-8">
+      <div className="mx-auto max-w-4xl" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          className="mb-10 text-center"
+        >
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Galeria</span>
+          <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
+            Nosso Trabalho
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center gap-3 mb-8"
+        >
+          {[
+            { key: "consultoria" as const, label: "Consultoria" },
+            { key: "reuniao" as const, label: "Reunião" },
+          ].map((t) => (
+            <button
+              key={t.key}
+              onClick={() => setTab(t.key)}
+              className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-all ${
+                tab === t.key
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "bg-card text-muted-foreground hover:bg-accent"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </motion.div>
+
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          <img
+            src={tab === "consultoria" ? consultingImg : meetingImg}
+            alt={tab === "consultoria" ? "Consultoria" : "Reunião de negócios"}
+            className="w-full rounded-2xl object-cover shadow-xl"
+            style={{ boxShadow: "var(--card-shadow)" }}
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 /* ───────── CONTATO ───────── */
 const Contato = () => {
   const ref = useRef(null);
@@ -462,6 +525,7 @@ const Index = () => {
       <Sobre />
       <Servicos />
       <Resultados />
+      <Galeria />
       <Contato />
       <Footer />
       <FloatingWA />

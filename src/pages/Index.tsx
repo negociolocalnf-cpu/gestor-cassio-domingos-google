@@ -20,6 +20,7 @@ import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
 import meetingImg from "@/assets/meeting.jpg";
+import resultados2Img from "@/assets/resultados-2.jpg";
 
 /* ───────── NAVBAR ───────── */
 const Navbar = () => {
@@ -327,7 +328,7 @@ const Resultados = () => {
           initial={{ opacity: 0, x: 30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="relative"
+          className="relative flex flex-col gap-5"
         >
           <img
             src={consultingImg}
@@ -335,7 +336,12 @@ const Resultados = () => {
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
-          
+          <img
+            src={resultados2Img}
+            alt="Reunião de resultados"
+            className="w-full rounded-2xl object-cover shadow-xl"
+            style={{ boxShadow: "var(--card-shadow)" }}
+          />
         </motion.div>
       </div>
     </section>

@@ -298,48 +298,48 @@ const Resultados = () => {
 
   return (
     <section className="py-24 px-5 lg:px-8">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2" ref={ref}>
+      <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          className="mb-6 text-center"
         >
           <span className="text-sm font-bold uppercase tracking-widest text-secondary">Resultados</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
             Destaque e posicionamento para o seu negócio
           </h2>
-          <ul className="mt-8 space-y-4">
-            {items.map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                className="flex items-start gap-3 text-muted-foreground"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
-                {item}
-              </motion.li>
-            ))}
-          </ul>
         </motion.div>
 
+        <motion.ul
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 }}
+          className="mx-auto mb-10 flex flex-wrap justify-center gap-x-8 gap-y-3"
+        >
+          {items.map((item, i) => (
+            <li key={i} className="flex items-center gap-2 text-muted-foreground">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-secondary" />
+              {item}
+            </li>
+          ))}
+        </motion.ul>
+
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="relative flex flex-col gap-5"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2"
         >
           <img
             src={consultingImg}
             alt="Consultoria com dados"
-            className="w-full rounded-2xl object-cover shadow-xl"
+            className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
           <img
             src={resultados2Img}
             alt="Reunião de resultados"
-            className="w-full rounded-2xl object-cover shadow-xl"
+            className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
         </motion.div>

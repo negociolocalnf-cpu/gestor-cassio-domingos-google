@@ -346,8 +346,6 @@ const Resultados = () => {
 const Galeria = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [tab, setTab] = useState<"consultoria" | "reuniao" | "empresas">("consultoria");
-
   return (
     <section className="bg-muted/50 py-24 px-5 lg:px-8">
       <div className="mx-auto max-w-4xl" ref={ref}>
@@ -358,57 +356,22 @@ const Galeria = () => {
         >
           <span className="text-sm font-bold uppercase tracking-widest text-secondary">Galeria</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            Nosso Trabalho
+            +100 Empresas Atendidas
           </h2>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-8"
-        >
-          {[
-            { key: "consultoria" as const, label: "Consultoria" },
-            { key: "reuniao" as const, label: "Reunião" },
-            { key: "empresas" as const, label: "+100 Empresas Atendidas" },
-          ].map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-all ${
-                tab === t.key
-                  ? "bg-primary text-primary-foreground shadow-md"
-                  : "bg-card text-muted-foreground hover:bg-accent"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </motion.div>
-
-        <motion.div
-          key={tab}
           initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="flex justify-center"
         >
-          {tab === "empresas" ? (
-            <video
-              src="/video/empresas-video.mp4"
-              controls
-              className="mx-auto max-h-[450px] w-auto rounded-2xl shadow-xl"
-              style={{ boxShadow: "var(--card-shadow)" }}
-            />
-          ) : (
-            <img
-              src={tab === "consultoria" ? consultingImg : meetingImg}
-              alt={tab === "consultoria" ? "Consultoria" : "Reunião de negócios"}
-              className="mx-auto max-h-[450px] w-auto rounded-2xl object-cover shadow-xl"
-              style={{ boxShadow: "var(--card-shadow)" }}
-            />
-          )}
+          <video
+            src="/video/empresas-video.mp4"
+            controls
+            className="mx-auto max-h-[450px] w-auto rounded-2xl shadow-xl"
+            style={{ boxShadow: "var(--card-shadow)" }}
+          />
         </motion.div>
       </div>
     </section>

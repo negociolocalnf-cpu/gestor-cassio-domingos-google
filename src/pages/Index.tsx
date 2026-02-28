@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import Depoimentos from "@/components/Depoimentos";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
@@ -505,6 +506,7 @@ const Index = () => {
       <Sobre />
       <Servicos />
       <Resultados />
+      <Depoimentos />
       <Galeria />
       <Contato />
       <Footer />

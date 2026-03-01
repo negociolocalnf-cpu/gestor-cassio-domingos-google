@@ -216,7 +216,7 @@ const Sobre = () => {
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
               { n: "100+", l: "Empresas" },
-              { n: "10+", l: "Anos" },
+              { n: "5+", l: "Anos" },
               { n: "100%", l: "Satisfação" },
             ].map((s, i) => (
               <motion.div

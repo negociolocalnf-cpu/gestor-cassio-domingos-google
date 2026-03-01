@@ -217,7 +217,7 @@ const Sobre = () => {
             {[
               { n: "100+", l: "Empresas" },
               { n: "5+", l: "Anos" },
-              { n: "98%", l: "Satisfação" },
+              { n: "100%", l: "Satisfação" },
             ].map((s, i) => (
               <motion.div
                 key={s.l}

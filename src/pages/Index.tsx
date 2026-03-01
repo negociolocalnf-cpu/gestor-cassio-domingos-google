@@ -479,7 +479,7 @@ const Contato = () => {
 const Footer = () => (
   <footer className="border-t border-border bg-card py-8 px-5 text-center">
     <p className="text-sm text-muted-foreground">
-      © {new Date().getFullYear()} Cássio Domingos · Consultor Google · Todos os direitos reservados
+      © {new Date().getFullYear()} Cássio Domingos · Gestor Comercial · Todos os direitos reservados
     </p>
   </footer>
 );

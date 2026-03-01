@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Depoimentos from "@/components/Depoimentos";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import FAQ from "@/components/FAQ";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
@@ -224,7 +226,7 @@ const Sobre = () => {
                 transition={{ delay: 0.4 + i * 0.1 }}
                 className="rounded-xl bg-muted p-4 text-center"
               >
-                <div className="font-display text-2xl font-bold text-primary">{s.n}</div>
+                <div className="font-display text-2xl font-bold text-primary"><AnimatedCounter target={s.n} /></div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
               </motion.div>
             ))}
@@ -508,6 +510,7 @@ const Index = () => {
       <Resultados />
       <Depoimentos />
       <Galeria />
+      <FAQ />
       <Contato />
       <Footer />
       <FloatingWA />

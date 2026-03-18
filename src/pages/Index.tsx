@@ -512,6 +512,7 @@ const Index = () => {
       <Depoimentos />
       <Galeria />
       <FAQ />
+      <RedesSociais />
       <Contato />
       <Footer />
       <FloatingWA />

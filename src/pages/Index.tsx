@@ -388,6 +388,45 @@ const Galeria = () => {
   );
 };
 
+/* ───────── REDES SOCIAIS ───────── */
+const RedesSociais = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section id="redes" className="py-24 px-5 lg:px-8">
+      <div className="mx-auto max-w-3xl text-center" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+        >
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Redes Sociais</span>
+          <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
+            Me Acompanhe nas Redes
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Acesse todos os meus canais e fique por dentro de dicas, novidades e conteúdos sobre posicionamento no Google.
+          </p>
+        </motion.div>
+
+        <motion.a
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
+          href="https://linktr.ee/suporte13online"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          className="mt-10 inline-flex items-center gap-3 rounded-full px-10 py-4 text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/20"
+          style={{ background: "var(--cta-gradient)" }}
+        >
+          <ArrowRight className="h-5 w-5" /> Acessar Todas as Redes
+        </motion.a>
+      </div>
+    </section>
+  );
+};
+
 /* ───────── CONTATO ───────── */
 const Contato = () => {
   const ref = useRef(null);

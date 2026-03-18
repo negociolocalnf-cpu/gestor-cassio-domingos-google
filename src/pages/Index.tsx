@@ -159,18 +159,18 @@ const Hero = () => (
             <MessageCircle className="h-5 w-5" /> Fale Comigo
           </a>
           <a
-            href="#servicos"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-          >
-            Ver Serviços <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
             href="https://linktr.ee/suporte13online"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
           >
             Minhas Redes <ArrowRight className="h-4 w-4" />
+          </a>
+          <a
+            href="#servicos"
+            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
+          >
+            Ver Serviços <ArrowRight className="h-4 w-4" />
           </a>
         </motion.div>
       </div>

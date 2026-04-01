@@ -556,9 +556,12 @@ const FloatingWA = () => (
 const Index = () => {
   return (
     <>
+      <LoadingScreen />
       <Navbar />
       <Hero />
+      <LogosClientes />
       <Sobre />
+      <ComoFunciona />
       <Servicos />
       <Resultados />
       <Depoimentos />

@@ -72,6 +72,7 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <DarkModeToggle scrolled={scrolled} />
           <a
             href="https://wa.me/5522981605225"
             target="_blank"

@@ -19,6 +19,10 @@ import { useState, useEffect } from "react";
 import Depoimentos from "@/components/Depoimentos";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQ from "@/components/FAQ";
+import LoadingScreen from "@/components/LoadingScreen";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import ComoFunciona from "@/components/ComoFunciona";
+import LogosClientes from "@/components/LogosClientes";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
@@ -68,6 +72,7 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <DarkModeToggle scrolled={scrolled} />
           <a
             href="https://wa.me/5522981605225"
             target="_blank"
@@ -109,7 +114,7 @@ const Navbar = () => {
 const Hero = () => (
   <section className="relative flex min-h-screen items-center overflow-hidden">
     <div className="absolute inset-0">
-      <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" />
+      <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
       <div className="absolute inset-0" style={{ background: "var(--hero-gradient)" }} />
     </div>
 
@@ -203,6 +208,7 @@ const Sobre = () => {
           <img
             src={aboutPhoto}
             alt="Cássio Domingos"
+            loading="lazy"
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
@@ -345,12 +351,14 @@ const Resultados = () => {
           <img
             src={consultingImg}
             alt="Consultoria com dados"
+            loading="lazy"
             className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
           <img
             src={resultados2Img}
             alt="Reunião de resultados"
+            loading="lazy"
             className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
@@ -551,9 +559,12 @@ const FloatingWA = () => (
 const Index = () => {
   return (
     <>
+      <LoadingScreen />
       <Navbar />
       <Hero />
+      <LogosClientes />
       <Sobre />
+      <ComoFunciona />
       <Servicos />
       <Resultados />
       <Depoimentos />

@@ -351,12 +351,14 @@ const Resultados = () => {
           <img
             src={consultingImg}
             alt="Consultoria com dados"
+            loading="lazy"
             className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
           <img
             src={resultados2Img}
             alt="Reunião de resultados"
+            loading="lazy"
             className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72"
             style={{ boxShadow: "var(--card-shadow)" }}
           />

@@ -49,11 +49,57 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 220 72% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 24 100% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 24 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 220 72% 55%;
+
+    --hero-gradient: linear-gradient(160deg, hsl(220 30% 4%) 0%, hsl(220 40% 10%) 60%, hsl(220 50% 14%) 100%);
+    --cta-gradient: linear-gradient(135deg, hsl(24 100% 50%) 0%, hsl(30 100% 55%) 100%);
+    --card-shadow: 0 4px 24px hsl(220 30% 0% / 0.3);
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 210 20% 92%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 220 72% 55%;
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -63,4 +109,20 @@
   h1, h2, h3, h4 {
     font-family: 'Sora', sans-serif;
   }
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(220 30% 6%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
 }

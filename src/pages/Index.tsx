@@ -208,6 +208,7 @@ const Sobre = () => {
           <img
             src={aboutPhoto}
             alt="Cássio Domingos"
+            loading="lazy"
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />

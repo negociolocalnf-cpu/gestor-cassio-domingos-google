@@ -23,6 +23,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
+import Metodo from "@/components/Metodo";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
@@ -44,6 +45,7 @@ const Navbar = () => {
     { label: "Início", href: "#" },
     { label: "Sobre", href: "#sobre" },
     { label: "Serviços", href: "#servicos" },
+    { label: "Método", href: "#metodo" },
     { label: "Redes", href: "#redes" },
     { label: "Contato", href: "#contato" },
   ];
@@ -566,6 +568,7 @@ const Index = () => {
       <Sobre />
       <ComoFunciona />
       <Servicos />
+      <Metodo />
       <Resultados />
       <Depoimentos />
       <Galeria />

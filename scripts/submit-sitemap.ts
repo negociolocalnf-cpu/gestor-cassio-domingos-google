@@ -49,15 +49,15 @@ async function submitSitemap() {
 
   const body = await res.text();
   if (res.status === 403) {
-    console.error(
-      "❌ 403: o site ainda não está verificado nesta conta do Google Search Console.\n" +
+    console.warn(
+      "⚠️  403: o site ainda não está verificado nesta conta do Google Search Console.\n" +
         "   Verifique a propriedade no Search Console e publique o site (a meta tag\n" +
         "   de verificação já está no index.html) antes de reenviar o sitemap.",
     );
   } else {
-    console.error(`❌ Falha (${res.status}): ${body}`);
+    console.warn(`⚠️  Não foi possível submeter o sitemap (${res.status}): ${body}`);
   }
-  process.exit(1);
+  // Nunca quebra o build — apenas avisa.
 }
 
 submitSitemap();

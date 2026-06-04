@@ -22,11 +22,11 @@ const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
 const GSC_KEY = process.env.GOOGLE_SEARCH_CONSOLE_API_KEY;
 
 if (!LOVABLE_API_KEY || !GSC_KEY) {
-  console.error(
-    "❌ Faltam segredos: LOVABLE_API_KEY e/ou GOOGLE_SEARCH_CONSOLE_API_KEY.\n" +
-      "   Conecte o Google Search Console no projeto para disponibilizá-los.",
+  console.warn(
+    "⚠️  Pulando submissão do sitemap: faltam LOVABLE_API_KEY e/ou GOOGLE_SEARCH_CONSOLE_API_KEY.\n" +
+      "   Conecte o Google Search Console no projeto para habilitar.",
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 const headers = {

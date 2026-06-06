@@ -1,38 +1,13 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Renata Oliveira",
-    role: "Proprietária · Clínica Estética Renova",
-    text: "O Cássio transformou a presença digital da minha clínica. Em menos de 3 meses, saímos da página 3 para o topo do Google Maps. O número de agendamentos pelo Google triplicou. Profissional excepcional, dedicado e que entrega resultados reais.",
-  },
-  {
-    name: "Marcos Vinícius",
-    role: "Sócio · MV Contabilidade",
-    text: "Contratei o Cássio sem muitas expectativas, mas ele superou tudo. Nossas avaliações saltaram de 12 para mais de 80, e hoje somos o escritório contábil mais bem avaliado da região. Recomendo de olhos fechados para quem quer crescer no digital.",
-  },
-  {
-    name: "Juliana Ferreira",
-    role: "CEO · Espaço Gourmet JF",
-    text: "Antes do Cássio, nosso restaurante era praticamente invisível online. Hoje aparecemos em primeiro lugar nas buscas locais e recebemos clientes novos todos os dias dizendo que nos encontraram no Google. Investimento que se paga sozinho.",
-  },
-  {
-    name: "André Luís",
-    role: "Diretor · AL Imóveis",
-    text: "O trabalho do Cássio é cirúrgico. Ele entende exatamente o que o algoritmo do Google precisa e entrega um plano claro, com métricas e acompanhamento semanal. Nossa imobiliária dobrou o volume de leads orgânicos em 4 meses. Simplesmente o melhor do mercado.",
-  },
-  {
-    name: "Camila Rodrigues",
-    role: "Fundadora · Studio Pilates Corpo & Mente",
-    text: "Eu já tinha tentado agências e freelancers, mas nenhum entregou o que o Cássio entregou. Ele é transparente, pontual e os resultados falam por si. Meu studio aparece em todas as buscas relevantes da cidade. Gratidão total por esse profissional incrível.",
-  },
-];
+import { useLang } from "@/contexts/LanguageContext";
 
 const Depoimentos = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t: tr } = useLang();
+  const testimonials = tr.depoimentos.items;
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
 

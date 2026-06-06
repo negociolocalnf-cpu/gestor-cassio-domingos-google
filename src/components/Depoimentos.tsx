@@ -93,14 +93,14 @@ const Depoimentos = () => {
           <button
             onClick={prev}
             className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-md transition-colors hover:bg-accent hover:text-accent-foreground"
-            aria-label="Anterior"
+            aria-label={tr.depoimentos.prev}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={next}
             className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-md transition-colors hover:bg-accent hover:text-accent-foreground"
-            aria-label="Próximo"
+            aria-label={tr.depoimentos.next}
           >
             <ChevronRight className="h-5 w-5" />
           </button>

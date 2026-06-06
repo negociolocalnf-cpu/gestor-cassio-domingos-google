@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLang } from "@/contexts/LanguageContext";
 
 import almek from "@/assets/clients/almek.jpg";
 import cmGourmet from "@/assets/clients/cm-gourmet.jpg";

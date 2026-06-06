@@ -1,37 +1,20 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageCircle, Search, Settings, TrendingUp } from "lucide-react";
+import { useLang } from "@/contexts/LanguageContext";
 
-const steps = [
-  {
-    icon: MessageCircle,
-    step: "01",
-    title: "Contato",
-    desc: "Você entra em contato e conversamos sobre o seu negócio e objetivos.",
-  },
-  {
-    icon: Search,
-    step: "02",
-    title: "Diagnóstico",
-    desc: "Analiso sua presença digital atual e identifico oportunidades de crescimento.",
-  },
-  {
-    icon: Settings,
-    step: "03",
-    title: "Execução",
-    desc: "Implemento as otimizações de SEO local e Google Meu Negócio.",
-  },
-  {
-    icon: TrendingUp,
-    step: "04",
-    title: "Resultados",
-    desc: "Acompanhamos juntos o crescimento com relatórios e métricas claras.",
-  },
-];
+const icons = [MessageCircle, Search, Settings, TrendingUp];
 
 const ComoFunciona = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
+
+  const steps = t.comoFunciona.steps.map((s, i) => ({
+    ...s,
+    icon: icons[i],
+    step: String(i + 1).padStart(2, "0"),
+  }));
 
   return (
     <section className="bg-muted/50 py-24 px-5 lg:px-8">
@@ -42,10 +25,10 @@ const ComoFunciona = () => {
           className="mb-14 text-center"
         >
           <span className="text-sm font-bold uppercase tracking-widest text-secondary">
-            Processo
+            {t.comoFunciona.eyebrow}
           </span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            Como Funciona
+            {t.comoFunciona.title}
           </h2>
         </motion.div>
 

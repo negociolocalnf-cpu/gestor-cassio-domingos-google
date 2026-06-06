@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLang } from "@/contexts/LanguageContext";
 
 import almek from "@/assets/clients/almek.jpg";
 import cmGourmet from "@/assets/clients/cm-gourmet.jpg";
@@ -28,6 +29,7 @@ const clients = [
 const LogosClientes = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
 
   return (
     <section className="border-y border-border py-14 px-5 lg:px-8">
@@ -37,7 +39,7 @@ const LogosClientes = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground"
         >
-          Empresas que confiam no meu trabalho
+          {t.logos.heading}
         </motion.p>
 
         <motion.div

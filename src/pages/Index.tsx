@@ -4,7 +4,6 @@ import {
   MessageCircle,
   Instagram,
   Mail,
-  Phone,
   Search,
   MapPin,
   Star,
@@ -21,18 +20,20 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQ from "@/components/FAQ";
 import LoadingScreen from "@/components/LoadingScreen";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import LanguageToggle from "@/components/LanguageToggle";
 import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
+import { useLang } from "@/contexts/LanguageContext";
 import heroImg from "@/assets/hero-photo.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
-import meetingImg from "@/assets/meeting.jpg";
 import resultados2Img from "@/assets/resultados-2.jpg";
 
 /* ───────── NAVBAR ───────── */
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
@@ -41,11 +42,11 @@ const Navbar = () => {
   }, []);
 
   const links = [
-    { label: "Início", href: "#" },
-    { label: "Sobre", href: "#sobre" },
-    { label: "Serviços", href: "#servicos" },
-    { label: "Redes", href: "#redes" },
-    { label: "Contato", href: "#contato" },
+    { label: t.nav.inicio, href: "#" },
+    { label: t.nav.sobre, href: "#sobre" },
+    { label: t.nav.servicos, href: "#servicos" },
+    { label: t.nav.redes, href: "#redes" },
+    { label: t.nav.contato, href: "#contato" },
   ];
 
   return (
@@ -72,6 +73,7 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <LanguageToggle scrolled={scrolled} />
           <DarkModeToggle scrolled={scrolled} />
           <a
             href="https://wa.me/5522981605225"
@@ -80,16 +82,20 @@ const Navbar = () => {
             className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-secondary-foreground transition-transform hover:scale-105"
             style={{ background: "var(--cta-gradient)" }}
           >
-            <MessageCircle className="h-4 w-4" /> WhatsApp
+            <MessageCircle className="h-4 w-4" /> {t.nav.whatsapp}
           </a>
         </div>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className={`md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageToggle scrolled={scrolled} />
+          <button
+            onClick={() => setOpen(!open)}
+            className={scrolled ? "text-foreground" : "text-primary-foreground"}
+            aria-label="Menu"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -111,90 +117,94 @@ const Navbar = () => {
 };
 
 /* ───────── HERO ───────── */
-const Hero = () => (
-  <section className="relative flex min-h-screen items-center overflow-hidden">
-    <div className="absolute inset-0">
-      <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
-      <div className="absolute inset-0" style={{ background: "var(--hero-gradient)" }} />
-    </div>
-
-    <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-32 lg:px-8">
-      <div className="max-w-xl">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-5 inline-block rounded-full border border-secondary/30 bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary"
-        >
-          Consultor Google · Gestor Comercial
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-4xl font-extrabold leading-[1.1] text-primary-foreground sm:text-5xl lg:text-6xl"
-        >
-          Posicione sua empresa no{" "}
-          <span className="text-secondary">topo do Google</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-6 text-lg leading-relaxed text-primary-foreground/65"
-        >
-          Mais de 100 empresas atendidas. Aumente sua visibilidade sem investir em anúncios pagos.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 flex items-center gap-4"
-        >
-          <a
-            href="https://wa.me/5522981605225"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
-            style={{ background: "var(--cta-gradient)" }}
-          >
-            <MessageCircle className="h-4 w-4" /> Fale Comigo
-          </a>
-          <a
-            href="#servicos"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-          >
-            Ver Serviços
-          </a>
-          <a
-            href="https://linktr.ee/suporte13online"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-          >
-            Minhas Redes
-          </a>
-        </motion.div>
+const Hero = () => {
+  const { t } = useLang();
+  return (
+    <section className="relative flex min-h-screen items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
+        <div className="absolute inset-0" style={{ background: "var(--hero-gradient)" }} />
       </div>
-    </div>
 
-    <motion.div
-      animate={{ y: [0, 8, 0] }}
-      transition={{ duration: 2, repeat: Infinity }}
-      className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-    >
-      <ChevronDown className="h-6 w-6 text-primary-foreground/40" />
-    </motion.div>
-  </section>
-);
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-32 lg:px-8">
+        <div className="max-w-xl">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-5 inline-block rounded-full border border-secondary/30 bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary"
+          >
+            {t.hero.badge}
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-4xl font-extrabold leading-[1.1] text-primary-foreground sm:text-5xl lg:text-6xl"
+          >
+            {t.hero.titlePart1}{" "}
+            <span className="text-secondary">{t.hero.titleHighlight}</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-6 text-lg leading-relaxed text-primary-foreground/65"
+          >
+            {t.hero.subtitle}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <a
+              href="https://wa.me/5522981605225"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
+              style={{ background: "var(--cta-gradient)" }}
+            >
+              <MessageCircle className="h-4 w-4" /> {t.hero.ctaTalk}
+            </a>
+            <a
+              href="#servicos"
+              className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
+            >
+              {t.hero.ctaServices}
+            </a>
+            <a
+              href="https://linktr.ee/suporte13online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
+            >
+              {t.hero.ctaSocial}
+            </a>
+          </motion.div>
+        </div>
+      </div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+      >
+        <ChevronDown className="h-6 w-6 text-primary-foreground/40" />
+      </motion.div>
+    </section>
+  );
+};
 
 /* ───────── SOBRE ───────── */
 const Sobre = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
 
   return (
     <section id="sobre" className="py-24 px-5 lg:px-8">
@@ -212,7 +222,6 @@ const Sobre = () => {
             className="w-full rounded-2xl object-cover shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
-          
         </motion.div>
 
         <motion.div
@@ -220,20 +229,14 @@ const Sobre = () => {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Quem Sou</span>
-          <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">Cássio Domingos</h2>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.sobre.eyebrow}</span>
+          <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">{t.sobre.title}</h2>
           <p className="mt-5 leading-relaxed text-muted-foreground">
-            Sou Gestor Comercial especializado em posicionamento orgânico no Google.
-            Transformo negócios locais em referências online, ajudando empresas a
-            serem encontradas por clientes qualificados — sem gastar com anúncios.
+            {t.sobre.text}
           </p>
 
           <div className="mt-8 grid grid-cols-3 gap-4">
-            {[
-              { n: "100+", l: "Empresas" },
-              { n: "5+", l: "Anos" },
-              { n: "100%", l: "Satisfação" },
-            ].map((s, i) => (
+            {t.sobre.stats.map((s, i) => (
               <motion.div
                 key={s.l}
                 initial={{ opacity: 0, y: 20 }}
@@ -253,16 +256,13 @@ const Sobre = () => {
 };
 
 /* ───────── SERVIÇOS ───────── */
-const services = [
-  { icon: Search, title: "SEO Local", desc: "Otimização para aparecer no topo das pesquisas locais." },
-  { icon: MapPin, title: "Google Meu Negócio", desc: "Criação e gestão do seu perfil no Google Business." },
-  { icon: Star, title: "Gestão de Avaliações", desc: "Estratégias para multiplicar suas avaliações positivas." },
-  { icon: BarChart3, title: "Relatórios", desc: "Acompanhamento detalhado de resultados e métricas." },
-];
+const serviceIcons = [Search, MapPin, Star, BarChart3];
 
 const Servicos = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
+  const services = t.servicos.items.map((s, i) => ({ ...s, icon: serviceIcons[i] }));
 
   return (
     <section id="servicos" className="bg-muted/50 py-24 px-5 lg:px-8">
@@ -272,9 +272,9 @@ const Servicos = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-14 text-center"
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Serviços</span>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.servicos.eyebrow}</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            Como Posso Ajudar
+            {t.servicos.title}
           </h2>
         </motion.div>
 
@@ -306,13 +306,7 @@ const Servicos = () => {
 const Resultados = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const items = [
-    "Apareça nas primeiras posições do Google Maps",
-    "Aumente suas avaliações e credibilidade",
-    "Atraia clientes qualificados organicamente",
-    "Resultados mensuráveis e transparentes",
-  ];
+  const { t } = useLang();
 
   return (
     <section className="py-24 px-5 lg:px-8">
@@ -322,9 +316,9 @@ const Resultados = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-6 text-center"
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Resultados</span>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.resultados.eyebrow}</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            Destaque e posicionamento para o seu negócio
+            {t.resultados.title}
           </h2>
         </motion.div>
 
@@ -334,7 +328,7 @@ const Resultados = () => {
           transition={{ delay: 0.2 }}
           className="mx-auto mb-10 flex flex-wrap justify-center gap-x-8 gap-y-3"
         >
-          {items.map((item, i) => (
+          {t.resultados.items.map((item, i) => (
             <li key={i} className="flex items-center gap-2 text-muted-foreground">
               <CheckCircle2 className="h-5 w-5 shrink-0 text-secondary" />
               {item}
@@ -372,6 +366,7 @@ const Resultados = () => {
 const Galeria = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
   return (
     <section className="bg-muted/50 py-24 px-5 lg:px-8">
       <div className="mx-auto max-w-4xl" ref={ref}>
@@ -380,9 +375,9 @@ const Galeria = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-10 text-center"
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Galeria</span>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.galeria.eyebrow}</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            +100 Empresas Atendidas
+            {t.galeria.title}
           </h2>
         </motion.div>
 
@@ -408,6 +403,7 @@ const Galeria = () => {
 const RedesSociais = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
 
   return (
     <section id="redes" className="py-24 px-5 lg:px-8">
@@ -416,12 +412,12 @@ const RedesSociais = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Redes Sociais</span>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.redes.eyebrow}</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            Me Acompanhe nas Redes
+            {t.redes.title}
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Acesse todos os meus canais e fique por dentro de dicas, novidades e conteúdos sobre posicionamento no Google.
+            {t.redes.subtitle}
           </p>
         </motion.div>
 
@@ -436,7 +432,7 @@ const RedesSociais = () => {
           className="mt-10 inline-flex items-center gap-3 rounded-full px-10 py-4 text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/20"
           style={{ background: "var(--cta-gradient)" }}
         >
-          <ArrowRight className="h-5 w-5" /> Acessar Todas as Redes
+          <ArrowRight className="h-5 w-5" /> {t.redes.cta}
         </motion.a>
       </div>
     </section>
@@ -447,25 +443,26 @@ const RedesSociais = () => {
 const Contato = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
 
   const channels = [
     {
       icon: MessageCircle,
-      label: "WhatsApp",
+      label: t.contato.labels.whatsapp,
       value: "(22) 98160-5225",
       href: "https://wa.me/5522981605225",
       color: "bg-green-500/10 text-green-600",
     },
     {
       icon: Mail,
-      label: "E-mail",
+      label: t.contato.labels.email,
       value: "suporte13online@gmail.com",
       href: "mailto:suporte13online@gmail.com",
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Instagram,
-      label: "Instagram",
+      label: t.contato.labels.instagram,
       value: "@consultorgoogle_",
       href: "https://www.instagram.com/consultorgoogle_/",
       color: "bg-pink-500/10 text-pink-600",
@@ -483,12 +480,12 @@ const Contato = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-secondary">Contato</span>
+          <span className="text-sm font-bold uppercase tracking-widest text-secondary">{t.contato.eyebrow}</span>
           <h2 className="mt-2 font-display text-3xl font-bold text-primary-foreground md:text-4xl">
-            Vamos Conversar?
+            {t.contato.title}
           </h2>
           <p className="mt-4 text-primary-foreground/50">
-            Entre em contato e descubra como posicionar sua empresa no topo do Google.
+            {t.contato.subtitle}
           </p>
         </motion.div>
 
@@ -526,7 +523,7 @@ const Contato = () => {
           className="mt-10 inline-flex items-center gap-2 rounded-full px-10 py-4 text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
           style={{ background: "var(--cta-gradient)" }}
         >
-          <MessageCircle className="h-5 w-5" /> Solicitar Orçamento
+          <MessageCircle className="h-5 w-5" /> {t.contato.cta}
         </motion.a>
       </div>
     </section>
@@ -534,13 +531,16 @@ const Contato = () => {
 };
 
 /* ───────── FOOTER ───────── */
-const Footer = () => (
-  <footer className="border-t border-border bg-card py-8 px-5 text-center">
-    <p className="text-sm text-muted-foreground">
-      © {new Date().getFullYear()} Cássio Domingos · Gestor Comercial · Todos os direitos reservados
-    </p>
-  </footer>
-);
+const Footer = () => {
+  const { t } = useLang();
+  return (
+    <footer className="border-t border-border bg-card py-8 px-5 text-center">
+      <p className="text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Cássio Domingos · {t.footer.rights}
+      </p>
+    </footer>
+  );
+};
 
 /* ───────── FLOATING WHATSAPP ───────── */
 const FloatingWA = () => (

@@ -1,38 +1,13 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Renata Oliveira",
-    role: "Proprietária · Clínica Estética Renova",
-    text: "O Cássio transformou a presença digital da minha clínica. Em menos de 3 meses, saímos da página 3 para o topo do Google Maps. O número de agendamentos pelo Google triplicou. Profissional excepcional, dedicado e que entrega resultados reais.",
-  },
-  {
-    name: "Marcos Vinícius",
-    role: "Sócio · MV Contabilidade",
-    text: "Contratei o Cássio sem muitas expectativas, mas ele superou tudo. Nossas avaliações saltaram de 12 para mais de 80, e hoje somos o escritório contábil mais bem avaliado da região. Recomendo de olhos fechados para quem quer crescer no digital.",
-  },
-  {
-    name: "Juliana Ferreira",
-    role: "CEO · Espaço Gourmet JF",
-    text: "Antes do Cássio, nosso restaurante era praticamente invisível online. Hoje aparecemos em primeiro lugar nas buscas locais e recebemos clientes novos todos os dias dizendo que nos encontraram no Google. Investimento que se paga sozinho.",
-  },
-  {
-    name: "André Luís",
-    role: "Diretor · AL Imóveis",
-    text: "O trabalho do Cássio é cirúrgico. Ele entende exatamente o que o algoritmo do Google precisa e entrega um plano claro, com métricas e acompanhamento semanal. Nossa imobiliária dobrou o volume de leads orgânicos em 4 meses. Simplesmente o melhor do mercado.",
-  },
-  {
-    name: "Camila Rodrigues",
-    role: "Fundadora · Studio Pilates Corpo & Mente",
-    text: "Eu já tinha tentado agências e freelancers, mas nenhum entregou o que o Cássio entregou. Ele é transparente, pontual e os resultados falam por si. Meu studio aparece em todas as buscas relevantes da cidade. Gratidão total por esse profissional incrível.",
-  },
-];
+import { useLang } from "@/contexts/LanguageContext";
 
 const Depoimentos = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t: tr } = useLang();
+  const testimonials = tr.depoimentos.items;
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
 
@@ -68,13 +43,13 @@ const Depoimentos = () => {
           className="mb-14 text-center"
         >
           <span className="text-sm font-bold uppercase tracking-widest text-secondary">
-            Depoimentos
+            {tr.depoimentos.eyebrow}
           </span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            O Que Dizem Sobre Meu Trabalho
+            {tr.depoimentos.title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Empresários que confiaram no meu trabalho e hoje colhem resultados reais no Google.
+            {tr.depoimentos.subtitle}
           </p>
         </motion.div>
 
@@ -118,14 +93,14 @@ const Depoimentos = () => {
           <button
             onClick={prev}
             className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-md transition-colors hover:bg-accent hover:text-accent-foreground"
-            aria-label="Anterior"
+            aria-label={tr.depoimentos.prev}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={next}
             className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-md transition-colors hover:bg-accent hover:text-accent-foreground"
-            aria-label="Próximo"
+            aria-label={tr.depoimentos.next}
           >
             <ChevronRight className="h-5 w-5" />
           </button>

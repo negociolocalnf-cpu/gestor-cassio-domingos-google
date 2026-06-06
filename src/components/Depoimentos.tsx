@@ -43,13 +43,13 @@ const Depoimentos = () => {
           className="mb-14 text-center"
         >
           <span className="text-sm font-bold uppercase tracking-widest text-secondary">
-            Depoimentos
+            {tr.depoimentos.eyebrow}
           </span>
           <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
-            O Que Dizem Sobre Meu Trabalho
+            {tr.depoimentos.title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Empresários que confiaram no meu trabalho e hoje colhem resultados reais no Google.
+            {tr.depoimentos.subtitle}
           </p>
         </motion.div>
 

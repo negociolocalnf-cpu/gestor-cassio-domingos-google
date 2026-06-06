@@ -327,6 +327,6 @@ export const translations = {
       rights: "Gestor Comercial · Todos los derechos reservados",
     },
   },
-} as const;
+};
 
 export type Translation = (typeof translations)["pt"];

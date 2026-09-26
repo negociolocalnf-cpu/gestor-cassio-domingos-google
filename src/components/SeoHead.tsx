@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLang } from "@/contexts/LanguageContext";
 
-const BASE = "https://gestor-cassio-domingos-google.lovable.app";
+const BASE = "https://gestor-cassio-domingos-google.vercel.app";
 
 const META = {
   pt: {
@@ -72,8 +72,8 @@ const SeoHead = () => {
         for (const node of data["@graph"] ?? []) {
           if (node["@type"] === "Person") node.jobTitle = m.job;
           if (node["@type"] === "Service") node.name = m.plo;
-          if (node["@type"] === "WebPage") {
-            node.name = m.title;
+          if (node["@type"] === "ProfilePage") {
+            node.name = `Cássio Domingos | ${m.job}`;
             node.inLanguage = lang === "pt" ? "pt-BR" : lang;
           }
         }

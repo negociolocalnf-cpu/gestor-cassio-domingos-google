@@ -14,7 +14,7 @@
  * Uso:  bun run scripts/submit-sitemap.ts
  */
 
-const SITE_URL = "https://gestor-cassio-domingos-google.lovable.app/";
+const SITE_URL = "https://gestor-cassio-domingos-google.vercel.app/";
 const SITEMAP_URL = `${SITE_URL}sitemap.xml`;
 
 const GATEWAY = "https://connector-gateway.lovable.dev/google_search_console";

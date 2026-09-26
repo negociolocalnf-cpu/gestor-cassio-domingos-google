@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://gestor-cassio-domingos-google.lovable.app";
+const BASE_URL = "https://gestor-cassio-domingos-google.vercel.app";
 
 interface SitemapEntry {
   path: string;

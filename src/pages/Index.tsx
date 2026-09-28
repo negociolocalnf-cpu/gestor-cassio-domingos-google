@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 import Depoimentos from "@/components/Depoimentos";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQ from "@/components/FAQ";
@@ -82,6 +83,7 @@ const Navbar = () => {
             href="https://wa.me/5522981605225"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { origem: "menu" })}
             className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-secondary-foreground transition-transform hover:scale-105"
             style={{ background: "var(--cta-gradient)" }}
           >
@@ -179,6 +181,7 @@ const Hero = () => {
               href="https://wa.me/5522981605225"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { origem: "inicio" })}
               className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
               style={{ background: "var(--cta-gradient)" }}
             >
@@ -467,28 +470,28 @@ const Contato = () => {
       label: t.contato.labels.whatsapp,
       value: "(22) 98160-5225",
       href: "https://wa.me/5522981605225",
-      color: "bg-green-500/10 text-green-600",
+      color: "bg-green-500/10 text-green-600", evento: "whatsapp",
     },
     {
       icon: Mail,
       label: t.contato.labels.email,
       value: "suporte13online@gmail.com",
       href: "mailto:suporte13online@gmail.com",
-      color: "bg-primary/10 text-primary",
+      color: "bg-primary/10 text-primary", evento: "email",
     },
     {
       icon: Instagram,
       label: t.contato.labels.instagram,
       value: "@consultorgoogle_",
       href: "https://www.instagram.com/consultorgoogle_/",
-      color: "bg-pink-500/10 text-pink-600",
+      color: "bg-pink-500/10 text-pink-600", evento: "instagram",
     },
     {
       icon: MapPin,
       label: "Google",
       value: "Ver no Google Maps",
       href: "https://maps.app.goo.gl/DdVZGKSfBm1ov7pk8",
-      color: "bg-secondary/10 text-secondary",
+      color: "bg-secondary/10 text-secondary", evento: "google_maps",
     },
   ];
 
@@ -519,6 +522,7 @@ const Contato = () => {
               href={ch.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("contato_click", { canal: ch.evento })}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 + i * 0.1 }}
@@ -543,6 +547,7 @@ const Contato = () => {
           href="https://wa.me/5522981605225"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", { origem: "contato" })}
           className="mt-10 inline-flex items-center gap-2 rounded-full px-10 py-4 text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
           style={{ background: "var(--cta-gradient)" }}
         >
@@ -596,6 +601,7 @@ const FloatingWA = () => (
     href="https://wa.me/5522981605225"
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() => trackEvent("whatsapp_click", { origem: "botao_flutuante" })}
     aria-label="WhatsApp"
     className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-primary-foreground shadow-lg shadow-green-500/30 transition-transform hover:scale-110"
   >
@@ -636,6 +642,7 @@ const GuiaDestaque = () => {
             </p>
             <Link
               to="/como-cadastrar-empresa-no-google"
+              onClick={() => trackEvent("guia_aberto", { origem: "destaque" })}
               className="mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-secondary-foreground transition-transform hover:scale-105"
               style={{ background: "var(--cta-gradient)" }}
             >

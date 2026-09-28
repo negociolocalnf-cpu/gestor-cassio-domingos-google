@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Depoimentos from "@/components/Depoimentos";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQ from "@/components/FAQ";
@@ -547,12 +548,19 @@ const Contato = () => {
 
 /* ───────── FOOTER ───────── */
 const Footer = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <footer className="border-t border-border bg-card py-8 px-5 text-center">
       <p className="text-sm text-muted-foreground">
         © {new Date().getFullYear()} Cássio Domingos · {t.footer.rights}
       </p>
+      {lang === "pt" && (
+        <p className="mt-2 text-sm">
+          <Link to="/como-cadastrar-empresa-no-google" className="font-medium text-secondary hover:underline">
+            Guia: como cadastrar sua empresa no Google
+          </Link>
+        </p>
+      )}
     </footer>
   );
 };
@@ -570,8 +578,62 @@ const FloatingWA = () => (
   </a>
 );
 
+/* ───────── GUIA GRATUITO ───────── */
+const GuiaDestaque = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const itens = [
+    "10 etapas do cadastro gratuito",
+    "Como funciona a verificação do Google",
+    "Fotos, descrição e avaliações que vendem",
+    "Os erros que fazem o perfil ser suspenso",
+  ];
+
+  return (
+    <section className="py-16 px-5 lg:px-8">
+      <div className="mx-auto max-w-4xl" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="grid gap-8 rounded-3xl border border-border bg-card p-8 md:grid-cols-[1.15fr_1fr] md:items-center md:p-10"
+          style={{ boxShadow: "var(--card-shadow)" }}
+        >
+          <div>
+            <span className="text-sm font-bold uppercase tracking-widest text-secondary">Guia gratuito</span>
+            <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-foreground md:text-3xl">
+              Como cadastrar sua empresa no Google
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              Escrevi o passo a passo completo para o dono do negócio fazer sozinho: do primeiro acesso até o
+              perfil aparecendo no mapa.
+            </p>
+            <Link
+              to="/como-cadastrar-empresa-no-google"
+              className="mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-secondary-foreground transition-transform hover:scale-105"
+              style={{ background: "var(--cta-gradient)" }}
+            >
+              Abrir o guia <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <ul className="space-y-3">
+            {itens.map((i) => (
+              <li key={i} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                <span className="text-sm leading-relaxed text-foreground/80">{i}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 /* ───────── PAGE ───────── */
 const Index = () => {
+  const { lang } = useLang();
   return (
     <>
       <LoadingScreen />
@@ -585,6 +647,7 @@ const Index = () => {
       <Depoimentos />
       <Galeria />
       <FAQ />
+      {lang === "pt" && <GuiaDestaque />}
       <RedesSociais />
       <Contato />
       <Footer />

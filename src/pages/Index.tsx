@@ -483,6 +483,13 @@ const Contato = () => {
       href: "https://www.instagram.com/consultorgoogle_/",
       color: "bg-pink-500/10 text-pink-600",
     },
+    {
+      icon: MapPin,
+      label: "Google",
+      value: "Ver no Google Maps",
+      href: "https://maps.app.goo.gl/DdVZGKSfBm1ov7pk8",
+      color: "bg-secondary/10 text-secondary",
+    },
   ];
 
   return (
@@ -505,7 +512,7 @@ const Contato = () => {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((ch, i) => (
             <motion.a
               key={ch.label}

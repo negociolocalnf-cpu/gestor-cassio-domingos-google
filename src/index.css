@@ -37,6 +37,7 @@
     --radius: 1rem;
 
     --hero-gradient: linear-gradient(160deg, hsl(220 30% 6%) 0%, hsl(220 40% 14%) 60%, hsl(220 50% 20%) 100%);
+    --hero-photo-overlay: linear-gradient(90deg, hsl(220 30% 6% / 0.94) 0%, hsl(220 30% 6% / 0.86) 32%, hsl(220 30% 6% / 0.18) 75%, hsl(220 30% 6% / 0.08) 100%);
     --cta-gradient: linear-gradient(135deg, hsl(24 100% 50%) 0%, hsl(30 100% 55%) 100%);
     --card-shadow: 0 4px 24px hsl(220 30% 10% / 0.06);
 
@@ -80,6 +81,7 @@
     --ring: 220 72% 55%;
 
     --hero-gradient: linear-gradient(160deg, hsl(220 30% 4%) 0%, hsl(220 40% 10%) 60%, hsl(220 50% 14%) 100%);
+    --hero-photo-overlay: linear-gradient(90deg, hsl(220 30% 4% / 0.94) 0%, hsl(220 30% 4% / 0.86) 32%, hsl(220 30% 4% / 0.22) 75%, hsl(220 30% 4% / 0.12) 100%);
     --cta-gradient: linear-gradient(135deg, hsl(24 100% 50%) 0%, hsl(30 100% 55%) 100%);
     --card-shadow: 0 4px 24px hsl(220 30% 0% / 0.3);
 
@@ -91,6 +93,12 @@
     --sidebar-accent-foreground: 210 20% 92%;
     --sidebar-border: 220 15% 20%;
     --sidebar-ring: 220 72% 55%;
+  }
+}
+
+@media (max-width: 767px) {
+  :root, .dark {
+    --hero-photo-overlay: linear-gradient(180deg, hsl(220 30% 6% / 0.52) 0%, hsl(220 30% 6% / 0.78) 30%, hsl(220 30% 6% / 0.76) 70%, hsl(220 30% 6% / 0.28) 100%);
   }
 }
 

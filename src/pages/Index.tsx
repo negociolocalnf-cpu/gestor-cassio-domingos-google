@@ -24,7 +24,7 @@ import LanguageToggle from "@/components/LanguageToggle";
 import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
 import { useLang } from "@/contexts/LanguageContext";
-import heroImg from "@/assets/hero-photo.jpg";
+import heroImg from "@/assets/hero-photo-enhanced.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
 import resultados2Img from "@/assets/resultados-2.jpg";
@@ -123,7 +123,7 @@ const Hero = () => {
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
-        <div className="absolute inset-0" style={{ background: "var(--hero-gradient)" }} />
+        <div className="absolute inset-0" style={{ background: "var(--hero-photo-overlay)" }} />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-32 lg:px-8">

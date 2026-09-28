@@ -548,6 +548,24 @@ const Contato = () => {
         >
           <MessageCircle className="h-5 w-5" /> {t.contato.cta}
         </motion.a>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.7 }}
+          className="mt-12 overflow-hidden rounded-2xl border border-primary-foreground/10"
+        >
+          <div className="flex items-center justify-center gap-2 bg-primary-foreground/5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
+            <MapPin className="h-3.5 w-3.5" /> Atendimento em Nova Friburgo e região
+          </div>
+          <iframe
+            title="Mapa de atendimento — Nova Friburgo, RJ"
+            src="https://www.google.com/maps?q=Nova%20Friburgo%2C%20RJ%2C%20Brasil&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-64 w-full border-0"
+          />
+        </motion.div>
       </div>
     </section>
   );

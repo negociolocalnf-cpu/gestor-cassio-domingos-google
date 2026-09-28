@@ -5,8 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
+import GuiaCadastro from "./pages/GuiaCadastro";
 import NotFound from "./pages/NotFound";
 import SeoHead from "./components/SeoHead";
+import { initAnalytics } from "@/lib/analytics";
+
+initAnalytics();
 
 const queryClient = new QueryClient();
 
@@ -20,6 +24,7 @@ const App = () => (
         <SeoHead />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/como-cadastrar-empresa-no-google" element={<GuiaCadastro />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

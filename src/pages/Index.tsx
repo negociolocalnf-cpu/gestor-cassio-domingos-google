@@ -15,6 +15,8 @@ import {
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 import Depoimentos from "@/components/Depoimentos";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FAQ from "@/components/FAQ";
@@ -25,6 +27,8 @@ import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
 import { useLang } from "@/contexts/LanguageContext";
 import heroImg from "@/assets/hero-photo-enhanced.jpg";
+import heroImgWebp from "@/assets/hero-photo-enhanced.webp";
+import heroImgMobile from "@/assets/hero-photo-mobile.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
 import resultados2Img from "@/assets/resultados-2.jpg";
@@ -79,6 +83,7 @@ const Navbar = () => {
             href="https://wa.me/5522981605225"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { origem: "menu" })}
             className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-secondary-foreground transition-transform hover:scale-105"
             style={{ background: "var(--cta-gradient)" }}
           >
@@ -122,7 +127,17 @@ const Hero = () => {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
+        <picture>
+          <source type="image/webp" srcSet={heroImgWebp} />
+          <img
+            src={heroImg}
+            srcSet={`${heroImgMobile} 720w, ${heroImg} 1400w`}
+            sizes="100vw"
+            alt="Cássio Domingos"
+            className="h-full w-full object-cover object-top"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0" style={{ background: "var(--hero-photo-overlay)" }} />
       </div>
 
@@ -166,6 +181,7 @@ const Hero = () => {
               href="https://wa.me/5522981605225"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { origem: "inicio" })}
               className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
               style={{ background: "var(--cta-gradient)" }}
             >
@@ -389,7 +405,10 @@ const Galeria = () => {
         >
           <video
             src="/video/empresas-video.mp4"
+            poster="/video/empresas-video-poster.jpg"
+            preload="none"
             controls
+            playsInline
             className="mx-auto max-h-[450px] w-auto rounded-2xl shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />
@@ -451,21 +470,28 @@ const Contato = () => {
       label: t.contato.labels.whatsapp,
       value: "(22) 98160-5225",
       href: "https://wa.me/5522981605225",
-      color: "bg-green-500/10 text-green-600",
+      color: "bg-green-500/10 text-green-600", evento: "whatsapp",
     },
     {
       icon: Mail,
       label: t.contato.labels.email,
       value: "suporte13online@gmail.com",
       href: "mailto:suporte13online@gmail.com",
-      color: "bg-primary/10 text-primary",
+      color: "bg-primary/10 text-primary", evento: "email",
     },
     {
       icon: Instagram,
       label: t.contato.labels.instagram,
       value: "@consultorgoogle_",
       href: "https://www.instagram.com/consultorgoogle_/",
-      color: "bg-pink-500/10 text-pink-600",
+      color: "bg-pink-500/10 text-pink-600", evento: "instagram",
+    },
+    {
+      icon: MapPin,
+      label: "Google",
+      value: "Ver no Google Maps",
+      href: "https://maps.app.goo.gl/DdVZGKSfBm1ov7pk8",
+      color: "bg-secondary/10 text-secondary", evento: "google_maps",
     },
   ];
 
@@ -489,13 +515,14 @@ const Contato = () => {
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((ch, i) => (
             <motion.a
               key={ch.label}
               href={ch.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("contato_click", { canal: ch.evento })}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 + i * 0.1 }}
@@ -520,11 +547,30 @@ const Contato = () => {
           href="https://wa.me/5522981605225"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", { origem: "contato" })}
           className="mt-10 inline-flex items-center gap-2 rounded-full px-10 py-4 text-base font-bold text-secondary-foreground shadow-lg shadow-secondary/20 transition-transform hover:scale-105"
           style={{ background: "var(--cta-gradient)" }}
         >
           <MessageCircle className="h-5 w-5" /> {t.contato.cta}
         </motion.a>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.7 }}
+          className="mt-12 overflow-hidden rounded-2xl border border-primary-foreground/10"
+        >
+          <div className="flex items-center justify-center gap-2 bg-primary-foreground/5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground/40">
+            <MapPin className="h-3.5 w-3.5" /> Atendimento em Nova Friburgo e região
+          </div>
+          <iframe
+            title="Mapa de atendimento — Nova Friburgo, RJ"
+            src="https://www.google.com/maps?q=Nova%20Friburgo%2C%20RJ%2C%20Brasil&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-64 w-full border-0"
+          />
+        </motion.div>
       </div>
     </section>
   );
@@ -532,12 +578,19 @@ const Contato = () => {
 
 /* ───────── FOOTER ───────── */
 const Footer = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <footer className="border-t border-border bg-card py-8 px-5 text-center">
       <p className="text-sm text-muted-foreground">
         © {new Date().getFullYear()} Cássio Domingos · {t.footer.rights}
       </p>
+      {lang === "pt" && (
+        <p className="mt-2 text-sm">
+          <Link to="/como-cadastrar-empresa-no-google" className="font-medium text-secondary hover:underline">
+            Guia: como cadastrar sua empresa no Google
+          </Link>
+        </p>
+      )}
     </footer>
   );
 };
@@ -548,6 +601,7 @@ const FloatingWA = () => (
     href="https://wa.me/5522981605225"
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() => trackEvent("whatsapp_click", { origem: "botao_flutuante" })}
     aria-label="WhatsApp"
     className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-primary-foreground shadow-lg shadow-green-500/30 transition-transform hover:scale-110"
   >
@@ -555,8 +609,63 @@ const FloatingWA = () => (
   </a>
 );
 
+/* ───────── GUIA GRATUITO ───────── */
+const GuiaDestaque = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const itens = [
+    "10 etapas do cadastro gratuito",
+    "Como funciona a verificação do Google",
+    "Fotos, descrição e avaliações que vendem",
+    "Os erros que fazem o perfil ser suspenso",
+  ];
+
+  return (
+    <section className="py-16 px-5 lg:px-8">
+      <div className="mx-auto max-w-4xl" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="grid gap-8 rounded-3xl border border-border bg-card p-8 md:grid-cols-[1.15fr_1fr] md:items-center md:p-10"
+          style={{ boxShadow: "var(--card-shadow)" }}
+        >
+          <div>
+            <span className="text-sm font-bold uppercase tracking-widest text-secondary">Guia gratuito</span>
+            <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-foreground md:text-3xl">
+              Como cadastrar sua empresa no Google
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              Escrevi o passo a passo completo para o dono do negócio fazer sozinho: do primeiro acesso até o
+              perfil aparecendo no mapa.
+            </p>
+            <Link
+              to="/como-cadastrar-empresa-no-google"
+              onClick={() => trackEvent("guia_aberto", { origem: "destaque" })}
+              className="mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-secondary-foreground transition-transform hover:scale-105"
+              style={{ background: "var(--cta-gradient)" }}
+            >
+              Abrir o guia <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <ul className="space-y-3">
+            {itens.map((i) => (
+              <li key={i} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                <span className="text-sm leading-relaxed text-foreground/80">{i}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 /* ───────── PAGE ───────── */
 const Index = () => {
+  const { lang } = useLang();
   return (
     <>
       <LoadingScreen />
@@ -570,6 +679,7 @@ const Index = () => {
       <Depoimentos />
       <Galeria />
       <FAQ />
+      {lang === "pt" && <GuiaDestaque />}
       <RedesSociais />
       <Contato />
       <Footer />

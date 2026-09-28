@@ -93,6 +93,49 @@ const SeoHead = () => {
         /* keep static markup */
       }
     }
+
+    // Dados estruturados do guia (só na rota do guia)
+    const guideLdId = "ld-guide";
+    let guideLd = document.getElementById(guideLdId) as HTMLScriptElement | null;
+    if (isGuide) {
+      if (!guideLd) {
+        guideLd = document.createElement("script");
+        guideLd.id = guideLdId;
+        guideLd.type = "application/ld+json";
+        document.head.appendChild(guideLd);
+      }
+      guideLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": `${url}#article`,
+            headline: "Como cadastrar sua empresa no Google: passo a passo completo",
+            description: GUIDE.desc,
+            inLanguage: "pt-BR",
+            datePublished: "2026-09-28",
+            dateModified: "2026-09-28",
+            author: { "@type": "Person", name: "Cássio Domingos", url: `${BASE}/` },
+            publisher: { "@type": "Person", name: "Cássio Domingos", url: `${BASE}/` },
+            mainEntityOfPage: url,
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Início", item: `${BASE}/` },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Como cadastrar sua empresa no Google",
+                item: url,
+              },
+            ],
+          },
+        ],
+      });
+    } else if (guideLd) {
+      guideLd.remove();
+    }
   }, [pathname, lang]);
 
   return null;

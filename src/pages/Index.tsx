@@ -25,6 +25,8 @@ import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
 import { useLang } from "@/contexts/LanguageContext";
 import heroImg from "@/assets/hero-photo-enhanced.jpg";
+import heroImgWebp from "@/assets/hero-photo-enhanced.webp";
+import heroImgMobile from "@/assets/hero-photo-mobile.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
 import resultados2Img from "@/assets/resultados-2.jpg";
@@ -122,7 +124,17 @@ const Hero = () => {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Cássio Domingos" className="h-full w-full object-cover object-top" loading="eager" />
+        <picture>
+          <source type="image/webp" srcSet={heroImgWebp} />
+          <img
+            src={heroImg}
+            srcSet={`${heroImgMobile} 720w, ${heroImg} 1400w`}
+            sizes="100vw"
+            alt="Cássio Domingos"
+            className="h-full w-full object-cover object-top"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0" style={{ background: "var(--hero-photo-overlay)" }} />
       </div>
 

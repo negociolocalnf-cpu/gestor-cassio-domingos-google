@@ -31,6 +31,15 @@ const META = {
   },
 } as const;
 
+const GUIDE_PATH = "/como-cadastrar-empresa-no-google";
+
+// O guia é publicado em português (é o idioma da busca que ele atende),
+// então os metadados dele não variam com o seletor de idioma.
+const GUIDE = {
+  title: "Como cadastrar sua empresa no Google | Passo a passo | Cássio Domingos",
+  desc: "Guia completo para colocar sua empresa no Google: 10 etapas do cadastro gratuito, métodos de verificação, fotos, avaliações e os erros que fazem o perfil ser suspenso.",
+};
+
 const setMeta = (attr: "name" | "property", key: string, content: string) => {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
   if (!el) {
@@ -48,8 +57,10 @@ const SeoHead = () => {
   useEffect(() => {
     const m = META[lang];
     const isHome = pathname === "/";
-    const title = isHome ? m.title : m.nfTitle;
-    const desc = isHome ? m.desc : m.nfDesc;
+    const isGuide = pathname === GUIDE_PATH;
+    const indexable = isHome || isGuide;
+    const title = isHome ? m.title : isGuide ? GUIDE.title : m.nfTitle;
+    const desc = isHome ? m.desc : isGuide ? GUIDE.desc : m.nfDesc;
     const url = `${BASE}${pathname}`;
 
     document.title = title;
@@ -59,7 +70,7 @@ const SeoHead = () => {
     setMeta("property", "og:url", url);
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", desc);
-    setMeta("name", "robots", isHome ? "index, follow" : "noindex");
+    setMeta("name", "robots", indexable ? "index, follow" : "noindex");
 
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) canonical.href = url;

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import LanguageToggle from "@/components/LanguageToggle";
+import { trackEvent } from "@/lib/analytics";
 
 const WA = "https://wa.me/5522981605225";
 

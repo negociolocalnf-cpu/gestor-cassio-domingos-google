@@ -304,7 +304,7 @@ const GuiaCadastro = () => {
             O que faz o perfil ser suspenso ou desaparecer
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            O Googlesuspende perfis que parecem falsos ou que tentam ganhar posição de forma artificial. Cada item abaixo
+            O Google suspende perfis que parecem falsos ou que tentam ganhar posição de forma artificial. Cada item abaixo
             é um motivo real de bloqueio.
           </p>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">

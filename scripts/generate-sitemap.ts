@@ -12,6 +12,7 @@ interface SitemapEntry {
 
 const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
+  { path: "/como-cadastrar-empresa-no-google", changefreq: "monthly", priority: "0.8" },
 ];
 
 function generateSitemap(entries: SitemapEntry[]) {

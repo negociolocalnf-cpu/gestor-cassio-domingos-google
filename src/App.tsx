@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import GuiaCadastro from "./pages/GuiaCadastro";
 import NotFound from "./pages/NotFound";
 import SeoHead from "./components/SeoHead";
+import { initAnalytics } from "@/lib/analytics";
+
+initAnalytics();
 
 const queryClient = new QueryClient();
 

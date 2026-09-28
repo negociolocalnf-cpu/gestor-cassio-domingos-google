@@ -389,7 +389,10 @@ const Galeria = () => {
         >
           <video
             src="/video/empresas-video.mp4"
+            poster="/video/empresas-video-poster.jpg"
+            preload="none"
             controls
+            playsInline
             className="mx-auto max-h-[450px] w-auto rounded-2xl shadow-xl"
             style={{ boxShadow: "var(--card-shadow)" }}
           />

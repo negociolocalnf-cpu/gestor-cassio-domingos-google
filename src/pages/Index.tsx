@@ -24,7 +24,7 @@ import LanguageToggle from "@/components/LanguageToggle";
 import ComoFunciona from "@/components/ComoFunciona";
 import LogosClientes from "@/components/LogosClientes";
 import { useLang } from "@/contexts/LanguageContext";
-import heroImg from "@/assets/hero-photo.jpg";
+import heroImg from "@/assets/hero-photo-enhanced.jpg";
 import aboutPhoto from "@/assets/about-photo.jpg";
 import consultingImg from "@/assets/consulting-new.jpg";
 import resultados2Img from "@/assets/resultados-2.jpg";
